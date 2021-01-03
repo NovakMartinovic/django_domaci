@@ -1,0 +1,51 @@
+<!-- Loads the path to your static files -->
+{% extends 'poruke/base.html' %}
+{% block poruke_active %}active{% endblock %}
+
+{% block body %}
+
+    <div class="albums-container container-fluid">
+
+    <!-- Poruke -->
+    <div class="row">
+            <h2>{{ 20 }}</h2>
+            {% for poruka in sve_poruke %}
+                <div class="col-sm-4 col-lg-3">
+                    <div class="thumbnail">
+                        <a href="{% url 'poruka:detail' p.id %}">
+
+                        </a>
+                        <div class="caption">
+                            <h2>{{ poruka.publisher }}</h2>
+                            <h4>{{ poruka.title }}</h4>
+
+                            <!-- View Details -->
+                            <a href="{% url 'poruke:detail' poruka.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+                            <!-- Delete Album -->
+                            <form action="{% url 'poruke:poruka-delete' poruka.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="poruka_id" value="{{ poruka.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+
+                            <!-- Edit Album -->
+                            <form action="{% url 'poruke:poruka-update' poruka.id %}" method="get" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="poruka_id" value="{{ poruka.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+
+    </div>
+
+{% endblock %}

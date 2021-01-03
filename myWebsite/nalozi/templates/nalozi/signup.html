@@ -1,0 +1,9 @@
+
+{% block content %}
+    <h1>SIGNUP</h1>
+    <form class = 'site-form' action = 'nalozi/signup/' method = 'post'>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Signup">
+    </form>
+{% endblock %}

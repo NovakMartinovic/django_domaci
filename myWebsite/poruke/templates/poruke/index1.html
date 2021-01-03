@@ -1,0 +1,16 @@
+{% extends 'poruke/base.html' %}
+
+{% block poruke_active %}active{% endblock %}
+
+{% block body %}
+
+<div class="poruke">
+
+    {% for poruka in lista_poruka %}
+        <h1>KORISNIK : {{ poruka.publisher }}</h1>
+        <h3>NASLOV : {{ poruka.title }}</h3>
+        <p>OPIS : {{ poruka.description }}</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
